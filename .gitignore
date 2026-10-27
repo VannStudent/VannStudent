@@ -2,3 +2,4 @@ clawd/final/
 clawd/test/
 clawd/*.log
 clawd/*.mp4
+__pycache__/
