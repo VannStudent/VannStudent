@@ -7,6 +7,7 @@ W0, H0 = int(os.environ.get("W", 480)), int(os.environ.get("H", 360))
 W, H = W0 * SS, H0 * SS
 N = int(os.environ.get("N", 48))
 OUT = os.environ.get("OUT", "frames")
+BG = np.array([13, 17, 23]) / 255.0
 os.makedirs(OUT, exist_ok=True)
 
 ORANGE = np.array([0.86, 0.43, 0.27])  # #D97757 claude
@@ -100,8 +101,8 @@ def render(fi):
     rd /= np.linalg.norm(rd, axis=-1, keepdims=True)
     ro = np.broadcast_to(cam, rd.shape).copy()
     # background: dark github gradient
-    g = np.clip(py.reshape(-1) * 0.5 + 0.5, 0, 1)[:, None]
-    col = (1 - g) * np.array([0.05, 0.065, 0.09]) + g * np.array([0.09, 0.11, 0.16])
+    # flat GitHub dark bg (#0d1117) so the GIF blends into the page
+    col = np.broadcast_to(BG, (H * W, 3)).copy()
     dist, hit = march(ro, rd, t)
     idx = np.where(hit)[0]
     p = ro[idx] + rd[idx] * dist[idx, None]
@@ -123,7 +124,8 @@ def render(fi):
     # ground: floor with shadow, fades into bg
     gi = m == 2
     fl = np.exp(-0.12 * (p[gi, 0] ** 2 + p[gi, 2] ** 2) * 1.0)
-    floor = np.array([0.12, 0.14, 0.2]) * (0.15 + 0.85 * sh[gi] * a[gi])[:, None]
+    # lit floor == BG exactly; only the shadow darkens it
+    floor = BG * (0.05 + 0.95 * sh[gi] * a[gi])[:, None]
     bgc = col[idx[gi]]
     c[gi] = bgc * (1 - fl[:, None]) + floor * fl[:, None]
     # glow ring under clawd
