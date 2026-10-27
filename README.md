@@ -4,6 +4,10 @@
 </p>
 
 <p align="center">
+  <img src="./assets/terminal.svg" width="100%" alt="vann neofetch" />
+</p>
+
+<p align="center">
   <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=3000&pause=800&color=58A6FF&center=true&vCenter=true&width=640&lines=%3E+booting+vann.exe+...;%3E+status%3A+vibing+%F0%9F%8E%A7;%3E+my+pair+programmer+is+an+LLM;%3E+prompt+in%2C+production+out+%E2%9A%A1" alt="typing" /></a>
 </p>
 
@@ -83,6 +87,14 @@ currently:
 </p>
 <p align="center">
   <img src="https://streak-stats.demolab.com?user=VannStudent&theme=github-dark-blue&hide_border=true" />
+</p>
+
+---
+
+### `> render --3d contributions`
+
+<p align="center">
+  <img src="./profile-3d-contrib/profile-night-rainbow.svg" width="100%" alt="3D contributions" />
 </p>
 
 ---
